@@ -1,0 +1,35 @@
+
+.search-card{
+  height: 350px;
+}
+
+.word-input{
+  font-size: 2.5em !important;
+  margin-top: 20%;
+  text-align: center;
+}
+
+.search-card-header{
+  font-size: 1.6em;
+  margin-bottom: 20%;
+}
+
+.search-button{
+  float: right;
+  position: relative;
+  top: 150px;
+}
+
+.word-input{
+  position:relative;
+  top: 75px;
+}
+
+.count-card-header{
+  text-align: center;
+  font-size: 3em
+}
+
+.count-text{
+  text-align: center;
+}
