@@ -31,7 +31,10 @@ $(document).ready(function(){
 
 
   function activateSearch(){
+    $(this).addClass('disabled')
     console.log('fired')
+    setTimeout(() => {$(this).removeClass('disabled')}, 5000)
+    // $('.search-button').addClass('disabled')
     var searchTerm = $('.word-input').val()
     $('.count-container').empty()
     for(var i = 0; i < articleSources.length; i++){
@@ -45,25 +48,31 @@ $(document).ready(function(){
           csrfmiddlewaretoken: Cookies.get('csrftoken'),
           searchTerm : searchTerm,
           link: articleLink
-          // link: 'https://newsapi.org/v1/articles?source=hacker-news&sortBy=latest&apiKey=f76904152bf944798a8a79a3be817402'
         },
         success: function(data){
-          $('.count-container').append('<div class="row">' +
-            '<div class="col s12 m8 l6 offset-m2 offset-l3">' +
-              '<div class="card indigo darken-1">' +
-                '<div class="card-content white-text">' +
-                '<div class=card-title>'+ data.title +'</div>' +
-                  '<span class=""><p class="count-card-header">' + data.count + '</p></span>' +
-                  '<p class="count-text">Times this word appeared</p>' +
+          if(data.count !== 0){
+            $('.count-container').append(
+              '<div class="col s6 m4 l3 ">' +
+                '<div class="card indigo darken-1 count-card">' +
+                  '<div class="card-content white-text">' +
+                  '<div class=card-title flow-text>'+ data.title +'</div>' +
+                    '<span class=""><p class="count-card-header">' + data.count + '</p></span>' +
+                    '<p class="count-text">Times this word appeared</p>' +
+                  '</div>' +
                 '</div>' +
               '</div>' +
-            '</div>' +
-          '</div>')
-          console.log('success', data)
+            '</div>')
+            console.log('success', data)
+          }
         }
+
       })
+      // .done(() => { if(i <= articleSources.length - 1){$('.search-button').removeClass('disabled')}})
+
     }
+    // setTimeout(5000, () => {$('.search-button').removeClass('disabled')})
+
   }
-  $('.search-button').click(activateSearch)
+$('.search-button').click(activateSearch)
 
 })

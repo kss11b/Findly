@@ -25,6 +25,14 @@
   top: 75px;
 }
 
+.count-card{
+  height: 200px;
+}
+
+.count-container{
+  height: 200px;
+}
+
 .count-card-header{
   text-align: center;
   font-size: 3em
